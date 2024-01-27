@@ -1,0 +1,9 @@
+- name: Playbook to install acm operator
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Run acm operator roles
+      ansible.builtin.include_role:
+        name: crl.openshift.acm_operator
+

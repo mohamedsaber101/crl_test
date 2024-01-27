@@ -1,0 +1,47 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  annotations:
+    olm.providedAPIs: MultiClusterHub.v1.operator.open-cluster-management.io,MultiClusterObservability.v1beta1.observability.open-cluster-management.io,MultiClusterObservability.v1beta2.observability.open-cluster-management.io,ObservabilityAddon.v1beta1.observability.open-cluster-management.io,Observatorium.v1alpha1.core.observatorium.io,SubmarinerConfig.v1alpha1.submarineraddon.open-cluster-management.io,SubmarinerDiagnoseConfig.v1alpha1.submarineraddon.open-cluster-management.io
+  generateName: open-cluster-management-
+  generation: 1
+  managedFields:
+  - apiVersion: operators.coreos.com/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:generateName: {}
+      f:spec:
+        .: {}
+        f:targetNamespaces:
+          .: {}
+          v:"open-cluster-management": {}
+        f:upgradeStrategy: {}
+    manager: Mozilla
+    operation: Update
+  - apiVersion: operators.coreos.com/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        .: {}
+        f:lastUpdated: {}
+        f:namespaces:
+          .: {}
+          v:"open-cluster-management": {}
+    manager: olm
+    operation: Update
+    subresource: status
+  - apiVersion: operators.coreos.com/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:olm.providedAPIs: {}
+    manager: olm
+    operation: Update
+  namespace: open-cluster-management
+spec:
+  targetNamespaces:
+  - open-cluster-management
+  upgradeStrategy: Default

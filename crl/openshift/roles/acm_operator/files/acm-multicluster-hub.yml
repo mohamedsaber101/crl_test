@@ -1,0 +1,170 @@
+apiVersion: operator.open-cluster-management.io/v1
+kind: MultiClusterHub
+metadata:
+  finalizers:
+  - finalizer.operator.open-cluster-management.io
+  managedFields:
+  - apiVersion: operator.open-cluster-management.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec: {}
+    manager: Mozilla
+    operation: Update
+  - apiVersion: operator.open-cluster-management.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:finalizers:
+          .: {}
+          v:"finalizer.operator.open-cluster-management.io": {}
+      f:spec:
+        f:availabilityConfig: {}
+        f:enableClusterBackup: {}
+        f:ingress:
+          .: {}
+          f:sslCiphers: {}
+        f:overrides:
+          .: {}
+          f:components: {}
+        f:separateCertificateManagement: {}
+    manager: multiclusterhub-operator
+    operation: Update
+  - apiVersion: operator.open-cluster-management.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        .: {}
+        f:components:
+          .: {}
+          f:console-chart-console-v2:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:grc-policy-addon-controller:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:grc-policy-propagator:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:insights-client:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:insights-metrics:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:klusterlet-addon-controller-v2:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:multicluster-engine:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:multicluster-engine-csv:
+            .: {}
+            f:lastTransitionTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:multicluster-engine-sub:
+            .: {}
+            f:lastTransitionTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:multicluster-operators-application:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:multicluster-operators-channel:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:multicluster-operators-hub-subscription:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:multicluster-operators-standalone-subscription:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:multicluster-operators-subscription-report:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:search-api:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:search-collector:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:search-indexer:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:search-postgres:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:search-v2-operator-controller-manager:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          f:volsync-addon-controller:
+            .: {}
+            f:lastTransitionTime: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+        f:conditions: {}
+        f:currentVersion: {}
+        f:desiredVersion: {}
+        f:phase: {}
+    manager: multiclusterhub-operator
+    operation: Update
+    subresource: status
+  name: multiclusterhub
+  namespace: open-cluster-management
+spec: {}

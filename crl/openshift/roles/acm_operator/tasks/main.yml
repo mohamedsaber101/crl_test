@@ -1,0 +1,64 @@
+---
+# tasks file for operator
+---
+- block:
+  - name: Log in
+    k8s_auth:
+      username: "{{ k8s_auth_username }}"
+      password: "{{ k8s_auth_password }}"
+      host: "{{ k8s_auth_host }}"
+      validate_certs: "{{ validate_certs }}"
+    register: k8s_auth_results
+
+  - name: Create acm-operator namespace
+    k8s:
+      name: open-cluster-management
+      kind: Namespace
+      state: present
+      definition:
+        metadata:
+          labels:
+          annotations:
+            openshift.io/node-selector: ""
+      host: "{{ k8s_auth_host }}"
+      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      validate_certs: "{{ validate_certs }}"
+
+  - name: Create acm-operator operatorgroup
+    k8s:
+      state: present
+      definition: "{{ lookup('file', 'acm-operator-operatorgroup.yml') }}"
+      host: "{{ k8s_auth_host }}"
+      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      validate_certs: "{{ validate_certs }}"
+
+  - name: Install Group Sync operator
+    k8s:
+      state: present
+      definition: "{{ lookup('file', 'acm-operator-subscription.yml') }}"
+      host: "{{ k8s_auth_host }}"
+      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      validate_certs: "{{ validate_certs }}"
+
+  - name: Wait for operators to install
+    pause:
+      seconds: 60
+
+  - name: Create acm multiclusterhub resource
+    k8s:
+      state: present
+      definition: "{{ lookup('file', 'acm-multicluster-hub.yml') }}"
+      host: "{{ k8s_auth_host }}"
+      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      validate_certs: "{{ validate_certs }}"
+
+
+
+  always:
+  - name: Log out
+    when: k8s_auth_results.k8s_auth.api_key is defined
+    k8s_auth:
+      state: absent
+      host: "{{ k8s_auth_host }}"
+      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      validate_certs: "{{ validate_certs }}"
