@@ -1,6 +1,5 @@
 ---
 # tasks file for operator
----
 - block:
   - name: Log in
     k8s_auth:
