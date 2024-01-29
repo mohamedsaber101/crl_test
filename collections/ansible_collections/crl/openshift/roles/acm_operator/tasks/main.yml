@@ -2,7 +2,7 @@
 # tasks file for operator
 - block:
   - name: Log in
-    k8s_auth:
+    kubernetes.core.k8s_auth:
       username: "{{ k8s_auth_username }}"
       password: "{{ k8s_auth_password }}"
       host: "{{ k8s_auth_host }}"
