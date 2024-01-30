@@ -33,7 +33,7 @@
       api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
       validate_certs: "{{ validate_certs }}"
 
-  - name: Install Group Sync operator
+  - name: Install acm operator subscription
     k8s:
       state: present
       definition: "{{ lookup('file', 'acm-operator-subscription.yml') }}"
@@ -45,13 +45,13 @@
     pause:
       seconds: 60
 
-  - name: Create acm multiclusterhub resource
-    k8s:
-      state: present
-      definition: "{{ lookup('file', 'acm-multicluster-hub.yml') }}"
-      host: "{{ k8s_auth_host }}"
-      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
-      validate_certs: "{{ validate_certs }}"
+  # - name: Create acm multiclusterhub resource
+  #   k8s:
+  #     state: present
+  #     definition: "{{ lookup('file', 'acm-multicluster-hub.yml') }}"
+  #     host: "{{ k8s_auth_host }}"
+  #     api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+  #     validate_certs: "{{ validate_certs }}"
 
 
 
