@@ -12,5 +12,5 @@
   tasks:
     - name: Run acm operator role
       ansible.builtin.include_role:
-        name: crl.openshift.acm-operator
+        name: crl.openshift.acm_operator
 

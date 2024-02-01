@@ -41,7 +41,7 @@
 
   - name: Wait for operators to install
     pause:
-      seconds: {{ wait_time }}
+      seconds: "{{ wait_time }}"
 
   - name: Create groupsync custom resource
     k8s:
