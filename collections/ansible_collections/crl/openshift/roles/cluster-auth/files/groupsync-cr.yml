@@ -1,0 +1,17 @@
+apiVersion: redhatcop.redhat.io/v1alpha1
+kind: GroupSync
+metadata:
+  name: azure-groupsync
+  namespace: group-sync-operator
+spec:
+  providers:
+    - name: azure
+      azure:
+        credentialsSecret:
+          name: oauth-groupsync-secret
+          namespace: group-sync-operator
+        groups:
+          - SAD-NGP-ARO-Cluster-Admin
+          - SAD-NGP-ARO-Contractors
+        prune: true
+  schedule: '*/5 * * * *'

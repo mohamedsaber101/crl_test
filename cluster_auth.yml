@@ -1,4 +1,4 @@
-- name: Playbook to install acm operator
+- name: Playbook to install and configure cluster OAuth
   hosts: localhost
   connection: local
   vars:
@@ -10,7 +10,7 @@
                         3536663162323238300a303961653334363339326464636537303034386539613862393765623332
                         30376335383463373238363563656239353264373737373834663737313061353266
   tasks:
-    - name: Run acm operator role
+    - name: Run cluster-oauth role
       ansible.builtin.include_role:
-        name: crl.openshift.acm-operator
+        name: crl.openshift.cluster-auth
 

@@ -1,0 +1,3 @@
+app_client_id: 23920bb4-256f-4dbe-96c8-b4071ba383b0 # App Registration account client ID
+app_client_secret: oauth-app-client-secret   # This is the secret that container the secret password from the App Regirstion account
+app_tenant_id: https://login.microsoftonline.com/374f8930-e150-4031-bb35-483215fe5900/v2.0  # GUID is the App Registration account's tenant ID

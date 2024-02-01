@@ -1,0 +1,25 @@
+﻿apiVersion: config.openshift.io/v1
+kind: OAuth
+metadata:
+  name: cluster
+spec:
+  identityProviders:
+    - openID:
+        claims:
+          email:
+          - email
+          name:
+          - name
+          preferredUsername:
+          - preferred_username
+        clientID: {{ app_client_id }}  
+        clientSecret:
+          name: {{ app_client_secret }}
+        extraScopes: 
+        - profile
+        - openid
+        - email
+        issuer: {{ app_tenant_id }}
+      mappingMethod: claim
+      name: AAD
+      type: OpenID

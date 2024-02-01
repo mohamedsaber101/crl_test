@@ -1,0 +1,43 @@
+---
+- block:
+  - name: Log in
+    k8s_auth:
+      username: "{{ k8s_auth_username }}"
+      password: "{{ k8s_auth_password }}"
+      host: "{{ k8s_auth_host }}"
+      validate_certs: "{{ validate_certs }}"
+    register: k8s_auth_results
+
+  - name: Delete group-sync-operator namespace
+    k8s:
+      name: group-sync-operator
+      kind: Namespace
+      state: absent
+      host: "{{ k8s_auth_host }}"
+      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      validate_certs: "{{ validate_certs }}"
+
+  - name: Remove cluster-admin rolebinding
+    k8s:
+      state: absent
+      definition: "{{ lookup('file', 'cluster-admin-rolebinding.yml') }}"
+      host: "{{ k8s_auth_host }}"
+      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      validate_certs: "{{ validate_certs }}"
+
+  - name: Remove LDAP Oauth config
+    k8s:
+      state: present
+      definition: "{{ lookup('file', 'oauth-cluster-cleanup.yml') }}"
+      host: "{{ k8s_auth_host }}"
+      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      validate_certs: "{{ validate_certs }}"
+
+  always:
+  - name: Log out
+    when: k8s_auth_results.k8s_auth.api_key is defined
+    k8s_auth:
+      state: absent
+      host: "{{ k8s_auth_host }}"
+      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      validate_certs: "{{ validate_certs }}"
