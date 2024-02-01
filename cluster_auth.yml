@@ -12,5 +12,5 @@
   tasks:
     - name: Run cluster-oauth role
       ansible.builtin.include_role:
-        name: crl.openshift.cluster-auth
+        name: crl.openshift.cluster_auth
 
