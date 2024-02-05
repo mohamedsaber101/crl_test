@@ -19,7 +19,7 @@ spec:
         - profile
         - openid
         - email
-        issuer: {{ app_tenant_id }}
+        issuer: {{ app_issuer }}
       mappingMethod: claim
       name: AAD
       type: OpenID

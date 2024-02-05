@@ -8,7 +8,7 @@ spec:
     - name: azure
       azure:
         credentialsSecret:
-          name: oauth-groupsync-secret
+          name: {{ groupsync_secret_name  }}
           namespace: group-sync-operator
         groups:
           - SAD-NGP-ARO-Cluster-Admin

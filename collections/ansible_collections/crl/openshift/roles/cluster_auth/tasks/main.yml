@@ -16,7 +16,7 @@
       definition:
         metadata:
           labels:
-            secrets: "oauth-groupsync-secret"
+            secrets: "{{ groupsync_secret_name  }}"
           annotations:
             openshift.io/node-selector: ""
       host: "{{ k8s_auth_host }}"
@@ -41,8 +41,29 @@
 
   - name: Wait for operators to install
     pause:
-      seconds: "{{ wait_time }}"
+      seconds: "{{ operator_install_wait_time }}"
+####
+  - name: Install Group Sync operator
+    k8s:
+      state: present
+      definition: "{{ lookup('template', 'item') }}"
+      host: "{{ k8s_auth_host }}"
+      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      validate_certs: "{{ validate_certs }}"
+    loop:
+    - external-secrets-namespace.yaml
+    - external-secrets-catalog-source.yaml
+    - external-secrets-operator-group.yaml
+    - external-secrets-subscription.yaml
+    - external-secrets-operator-config.yaml
+    - external-secrets-cluster-secret-store.yaml
+    - external-secret-group-sync.yaml
+    - external-secret-oauth.yaml
 
+
+
+
+####
   - name: Create groupsync custom resource
     k8s:
       state: present
